@@ -15,12 +15,12 @@ i18n.use(initReactI18next).init({
         FAQ:            'FAQ',
 
         /* ── Hero ── */
-        Tagline:        'Premium haircuts, shaves, facials & spa treatments — all under one roof in Busaiteen, Bahrain.',
+        Tagline:        'Premium haircuts, shaves, facials & spa treatments — all under one roof in Janabiyah, Bahrain.',
         BookNow:        'Book on WhatsApp',
 
         /* ── Contact / Footer ── */
         Contact:        'Contact',
-        Address:        'Alsayh Centre, 2811 Busaiteen / Al Sayh, Bahrain',
+        Address:        'Building 111 Road 77, Janabiyah, Bahrain',
         Hours:          'Opening Hours',
         Opening_Hours:  'Open 7 Days a Week',
 
@@ -34,14 +34,14 @@ i18n.use(initReactI18next).init({
         Sunday:         'Sunday',
 
         /* ── Chat ── */
-        ChatWelcome:    'Welcome to The Barber Shop and Spa! 👋\nHow can I help you today? Ask about our services, prices, or book an appointment via WhatsApp.',
+        ChatWelcome:    'Welcome to The Social Barber! 👋\nHow can I help you today? Ask about our services, prices, or book an appointment via WhatsApp.',
 
         /* ── FAQ ── */
         FaqQ1: 'Where are you located?',
-        FaqA1: 'We are inside Alsayh Centre, 2811 Busaiteen / Al Sayh, Bahrain. You can find us easily on Google Maps.',
+        FaqA1: 'We are at Building 111 Road 77, Janabiyah, Bahrain. You can find us easily on Google Maps.',
 
         FaqQ2: 'Do I need to book in advance?',
-        FaqA2: 'Walk-ins are welcome, but we recommend booking via WhatsApp (+973 3977 7136) to secure your preferred time slot.',
+        FaqA2: 'Walk-ins are welcome, but we recommend booking via WhatsApp (+973 6699 9901) to secure your preferred time slot.',
 
         FaqQ3: 'What are your opening hours?',
         FaqA3: 'We are open every day: Monday to Wednesday & Saturday to Sunday 10 AM – 10 PM, Thursday & Friday 10 AM – 11 PM.',
@@ -60,12 +60,12 @@ i18n.use(initReactI18next).init({
         FAQ:            'الأسئلة الشائعة',
 
         /* ── Hero ── */
-        Tagline:        'قصات شعر احترافية، حلاقة، فيشل وخدمات سبا متكاملة — تحت سقف واحد في البسيتين، البحرين.',
+        Tagline:        'قصات شعر احترافية، حلاقة، فيشل وخدمات سبا متكاملة — تحت سقف واحد في الجنابية، البحرين.',
         BookNow:        'احجز عبر واتساب',
 
         /* ── Contact / Footer ── */
         Contact:        'تواصل معنا',
-        Address:        'مركز الصايح، 2811 البسيتين / الصايح، البحرين',
+        Address:        'مبنى 111 طريق 77، الجنابية، البحرين',
         Hours:          'ساعات العمل',
         Opening_Hours:  'مفتوح 7 أيام في الأسبوع',
 
@@ -79,14 +79,14 @@ i18n.use(initReactI18next).init({
         Sunday:         'الأحد',
 
         /* ── Chat ── */
-        ChatWelcome:    'مرحباً بك في ذا باربر شوب آند سبا! 👋\nكيف يمكنني مساعدتك؟ اسأل عن خدماتنا وأسعارنا أو احجز موعدك عبر واتساب.',
+        ChatWelcome:    'مرحباً بك في ذا سوشيال باربر! 👋\nكيف يمكنني مساعدتك؟ اسأل عن خدماتنا وأسعارنا أو احجز موعدك عبر واتساب.',
 
         /* ── FAQ ── */
         FaqQ1: 'أين يقع المحل؟',
-        FaqA1: 'نقع داخل مركز الصايح، 2811 البسيتين / الصايح، البحرين. يمكنك إيجادنا بسهولة على خرائط جوجل.',
+        FaqA1: 'نقع في مبنى 111 طريق 77، الجنابية، البحرين. يمكنك إيجادنا بسهولة على خرائط جوجل.',
 
         FaqQ2: 'هل يجب الحجز مسبقاً؟',
-        FaqA2: 'نرحب بالزيارات المباشرة، لكن ننصح بالحجز عبر واتساب (+973 3977 7136) لضمان الوقت المناسب لك.',
+        FaqA2: 'نرحب بالزيارات المباشرة، لكن ننصح بالحجز عبر واتساب (+973 6699 9901) لضمان الوقت المناسب لك.',
 
         FaqQ3: 'ما هي ساعات العمل؟',
         FaqA3: 'نعمل يومياً: من الإثنين إلى الأربعاء ومن السبت إلى الأحد من 10 ص حتى 10 م، والخميس والجمعة من 10 ص حتى 11 م.',

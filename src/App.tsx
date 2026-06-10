@@ -24,8 +24,13 @@ const B = {
   navy:      '#0d1829',
 };
 
-const MAPS_URL = 'https://www.google.com/maps/place/The+Barber+shop+and+spa+-+Men/@26.240931,50.5435207,13z/data=!4m10!1m2!2m1!1sbarbershop+%23bahrain!3m6!1s0x3e49a50d347b9465:0x97ebfa25dcf386ff!8m2!3d26.2782808!4d50.5957885!15sChNiYXJiZXJzaG9wICNiYWhyYWluWhUiE2JhcmJlcnNob3AgI2JhaHJhaW6SAQNzcGGaASRDaGREU1VoTk1HOW5TMFZKUTBGblNVUklMVzlZVVRaQlJSQULgAQD6AQQIABBC!16s%2Fg%2F11pb19qrcl?entry=ttu';
-const WALINK = 'https://wa.me/97339777136';
+// ── Updated business constants ──
+const MAPS_URL = 'https://www.google.com/maps/place/The+Social+Barber/@26.1867612,50.4574025,15z/data=!4m11!1m3!2m2!1sBAHRAIN+barbershop!6e1!3m6!1s0x3e49b1d206f89cff:0x34e453109b05d1dd!8m2!3d26.1867612!4d50.4754269!15sChJCQUhSQUlOIGJhcmJlcnNob3BaFCISYmFocmFpbiBiYXJiZXJzaG9wkgELYmFyYmVyX3Nob3CaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMjE0VkdORVVsSlRSV00xVTBad2JVOUlXa1ZqVmtrMVlVTXhTMVJZWXhBQuABAPoBBAgmEDI!16s%2Fg%2F11zk7h4qmr?entry=ttu&g_ep=EgoyMDI2MDYwMy4xIKXMDSoASAFQAw%3D%3D';
+const WALINK  = 'https://wa.me/97366999901';
+const PHONE   = '+973 6699 9901';
+const PHONE_RAW = '+97366999901';
+const ADDRESS_EN = 'Building 111 Road 77, Janabiyah, Bahrain';
+const ADDRESS_AR = 'مبنى 111 طريق 77، الجنابية، البحرين';
 
 const SERVICES = [
   { en: 'Hair Cut',              ar: 'قص الشعر',                 price: '2.5',  icon: '✂️' },
@@ -113,10 +118,10 @@ function LoadingScreen({ isRTL }: { isRTL: boolean }) {
       <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.7 }} className="mt-8 text-center">
         <div className="text-3xl md:text-4xl font-black tracking-[0.18em] mb-1" style={{ color: B.white }}>
-          <span style={{ color: B.gold }}>THE BARBER </span>SHOP & SPA
+          <span style={{ color: B.gold }}>THE SOCIAL </span>BARBER
         </div>
         <div className="text-[10px] tracking-[0.5em] uppercase font-bold mt-1" style={{ color: B.goldDark }}>
-          Busaiteen · Bahrain
+          Janabiyah · Bahrain
         </div>
       </motion.div>
       <motion.div className="mt-8 h-[2px] rounded-full overflow-hidden"
@@ -144,12 +149,9 @@ function LangButton({ isRTL, onClick }: { isRTL: boolean; onClick: () => void })
       title={isRTL ? 'Switch to English' : 'التبديل إلى العربية'}
       className="flex items-center gap-1.5 rounded-xl px-2 py-1.5 transition-all"
       style={{ border: `1px solid ${B.border}`, background: 'rgba(184,134,11,0.06)' }}>
-      {/* Show the INACTIVE language as the one to switch TO */}
       {isRTL ? (
-        /* Currently Arabic → show GB flag to switch to English */
         <span className="text-xl leading-none" title="Switch to English">🇬🇧</span>
       ) : (
-        /* Currently English → show SA flag to switch to Arabic */
         <span className="text-xl leading-none" title="التبديل إلى العربية">🇸🇦</span>
       )}
       <span className="text-[9px] font-black tracking-widest" style={{ color: B.gold }}>
@@ -160,7 +162,7 @@ function LangButton({ isRTL, onClick }: { isRTL: boolean; onClick: () => void })
 }
 
 /* ══════════════════════════════════
-   HERO
+   HERO — uses gallery/3.jpg as background
 ══════════════════════════════════ */
 function HeroSection({ isRTL }: { isRTL: boolean }) {
   const { t } = useTranslation();
@@ -170,8 +172,8 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
     <section id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0" style={{ background: B.bg }} />
-        {/* Hero background — 2.jpg, opacity tuned to be visible but not overwhelming */}
-        <img src="/gallery/2.jpg" alt="bg"
+        {/* Hero background — 3.jpg as requested */}
+        <img src="/gallery/3.jpg" alt="bg"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
           style={{
             objectPosition: 'center 30%',
@@ -186,7 +188,6 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
             img.onerror = () => { setImgLoaded(true); img.style.display = 'none'; };
           }}
         />
-        {/* Overlay: darker at top+bottom, lighter in center so image shows */}
         <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(8,11,16,0.88) 0%, rgba(8,11,16,0.30) 30%, rgba(8,11,16,0.30) 65%, rgba(8,11,16,0.88) 88%, ${B.bg} 100%)` }} />
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, transparent 20%, rgba(0,0,0,0.55) 100%)' }} />
         <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 38%, rgba(184,134,11,0.05) 0%, transparent 65%)` }} />
@@ -202,12 +203,11 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="flex items-center justify-center gap-2.5 mb-8">
           <div className="flex items-center gap-1">
-            {[0,1,2,3].map(i => (
+            {[0,1,2,3,4].map(i => (
               <Star key={i} className="w-4 h-4 fill-current" style={{ color: B.gold }} />
             ))}
-            <Star className="w-4 h-4" style={{ color: B.gold, opacity: 0.4 }} />
           </div>
-          <span className="text-sm font-bold tracking-widest" style={{ color: B.silver }}>4.7 · 83 Reviews</span>
+          <span className="text-sm font-bold tracking-widest" style={{ color: B.silver }}>4.9 · 55 Reviews</span>
           <span className="text-[10px] font-black tracking-[0.3em] px-2 py-0.5 rounded-full uppercase"
             style={{ color: B.gold, background: 'rgba(184,134,11,0.1)', border: `1px solid ${B.border}` }}>Google</span>
         </motion.div>
@@ -234,16 +234,16 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
                 <div className="h-px flex-1" style={{ background: `linear-gradient(90deg, transparent, ${B.gold}70, transparent)` }} />
               </div>
               <div className="text-sm md:text-base font-black mb-3 leading-none" style={{ direction: 'rtl', color: B.silver, letterSpacing: '0.08em' }}>
-                <span style={{ color: B.goldGlow, textShadow: `0 0 22px ${B.gold}90` }}>ذا باربر شوب </span>
-                <span style={{ color: B.white }}>آند سبا · البحرين</span>
+                <span style={{ color: B.goldGlow, textShadow: `0 0 22px ${B.gold}90` }}>ذا سوشيال باربر </span>
+                <span style={{ color: B.white }}>· البحرين</span>
               </div>
               <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-[0.08em] leading-none" style={{ fontFamily: '"Playfair Display", serif' }}>
-                <span style={{ color: B.gold, textShadow: `0 0 40px ${B.gold}, 0 0 80px ${B.goldDark}80` }}>THE BARBER</span>
+                <span style={{ color: B.gold, textShadow: `0 0 40px ${B.gold}, 0 0 80px ${B.goldDark}80` }}>THE SOCIAL</span>
                 <br />
-                <span style={{ color: B.white, textShadow: `0 0 30px rgba(255,255,255,0.15)` }}>SHOP & SPA</span>
+                <span style={{ color: B.white, textShadow: `0 0 30px rgba(255,255,255,0.15)` }}>BARBER</span>
               </div>
               <div className="mt-4 text-[11px] tracking-[0.45em] uppercase font-bold" style={{ color: B.goldDark }}>
-                Men's Grooming · Busaiteen · Bahrain
+                Men's Grooming · Janabiyah · Bahrain
               </div>
               <div className="flex items-center gap-3 justify-center mt-5">
                 <div className="h-px flex-1" style={{ background: `linear-gradient(90deg, transparent, ${B.gold}70, transparent)` }} />
@@ -265,14 +265,14 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <motion.a
-            href={`${WALINK}?text=${encodeURIComponent(i18n.language === 'ar' ? 'السلام عليكم، أريد الحجز' : 'Hello, I would like to book an appointment')}`}
+            href={`${WALINK}?text=${encodeURIComponent(i18n.language === 'ar' ? 'السلام عليكم، أريد الحجز في ذا سوشيال باربر' : 'Hello, I would like to book an appointment at The Social Barber')}`}
             target="_blank" rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}
             className="flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black tracking-[0.15em] uppercase"
             style={{
               background: `linear-gradient(135deg, ${B.gold}, ${B.goldDark})`,
               color: '#06080e',
-              boxShadow: `0 0 40px rgba(184,134,11,0.4), 0 15px 40px rgba(0,0,0,0.5)`,
+              boxShadow: `0 0 35px rgba(184,134,11,0.45), 0 12px 40px rgba(0,0,0,0.5)`,
             }}>
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -281,27 +281,22 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
           </motion.a>
           <motion.a href={MAPS_URL} target="_blank" rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}
-            className="flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black tracking-[0.15em] uppercase"
-            style={{ background: 'rgba(184,134,11,0.08)', color: B.goldGlow, border: `1px solid ${B.border}` }}>
+            className="flex items-center gap-2.5 px-7 py-4 rounded-2xl text-sm font-black tracking-[0.12em] uppercase"
+            style={{
+              color: B.gold,
+              border: `1px solid ${B.borderGlow}`,
+              background: 'rgba(184,134,11,0.05)',
+              backdropFilter: 'blur(12px)',
+            }}>
             <Navigation className="w-4 h-4" />
-            {i18n.language === 'ar' ? 'احصل على الاتجاهات' : 'Get Directions'}
+            {isRTL ? 'احصل على الاتجاهات' : 'Get Directions'}
           </motion.a>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 1 }}
-          className="mt-16 flex flex-col items-center gap-2">
-          <div className="w-px h-10 rounded-full" style={{ background: `linear-gradient(to bottom, transparent, ${B.gold}, transparent)` }} />
-          <span className="text-[9px] tracking-[0.45em] uppercase" style={{ color: B.goldDark }}>Scroll</span>
         </motion.div>
       </div>
 
       <style>{`
-        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
-        @keyframes floatOrb {
-          0%,100% { transform: translateY(0) translateX(0); }
-          33%      { transform: translateY(-22px) translateX(10px); }
-          66%      { transform: translateY(-11px) translateX(-6px); }
-        }
+        @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
+        @keyframes floatOrb { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-28px)} }
       `}</style>
     </section>
   );
@@ -313,74 +308,73 @@ function HeroSection({ isRTL }: { isRTL: boolean }) {
 function ServicesSection({ isRTL }: { isRTL: boolean }) {
   const { t } = useTranslation();
   return (
-    <section id="services" className="py-28 relative overflow-hidden"
-      style={{ background: `linear-gradient(180deg, ${B.bg} 0%, ${B.surface} 60%, ${B.panel} 100%)` }}>
-      <div className="absolute inset-x-0 top-0 h-px" style={{ background: `linear-gradient(90deg, transparent, ${B.gold}, transparent)` }} />
+    <section id="services" className="py-28 relative"
+      style={{ background: `linear-gradient(180deg, ${B.bg} 0%, ${B.panel} 100%)` }}>
+      <div className="absolute inset-x-0 top-0 h-px opacity-40"
+        style={{ background: `linear-gradient(90deg, transparent, ${B.gold}, transparent)` }} />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
           <span className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.42em] uppercase mb-5 px-5 py-2 rounded-full"
             style={{ color: B.gold, background: 'rgba(184,134,11,0.07)', border: `1px solid ${B.border}` }}>
-            <Sparkles className="w-3 h-3" />
-            {isRTL ? 'خدماتنا وأسعارنا' : 'Our Services & Pricing'}
+            <Scissors className="w-3 h-3" />
+            {isRTL ? 'قائمة الأسعار' : 'Price List'}
           </span>
           <h2 className="text-3xl md:text-5xl font-black tracking-wider uppercase" style={{ color: B.white, fontFamily: '"Playfair Display", serif' }}>
             {t('Services')}
           </h2>
-          <div className="w-24 h-[2px] mx-auto rounded-full mt-5" style={{ background: `linear-gradient(90deg, transparent, ${B.gold}, transparent)` }} />
+          <div className="w-28 h-[2px] mx-auto rounded-full mt-5"
+            style={{ background: `linear-gradient(90deg, transparent, ${B.gold}, transparent)` }} />
         </motion.div>
+
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative">
-          <div className="absolute inset-0 rounded-3xl translate-x-2 translate-y-3"
-            style={{ background: B.navy, opacity: 0.7, filter: 'blur(5px)', borderRadius: '24px' }} />
-          <div className="relative rounded-3xl overflow-hidden"
-            style={{
-              background: 'rgba(10,13,20,0.97)', border: `1px solid ${B.border}`,
-              boxShadow: `0 0 80px rgba(184,134,11,0.07), 0 50px 100px rgba(0,0,0,0.6), inset 0 1px 0 rgba(184,134,11,0.12)`,
-              transform: 'perspective(1000px) rotateX(1deg)',
-            }}>
-            <div className="h-1" style={{ background: `linear-gradient(90deg, ${B.goldDark}, ${B.gold}, ${B.goldGlow}, ${B.gold}, ${B.goldDark})` }} />
-            <div className="px-8 pt-7 pb-5 text-center" style={{ borderBottom: `1px solid rgba(184,134,11,0.10)` }}>
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <div className="h-px flex-1" style={{ background: `linear-gradient(90deg, transparent, ${B.gold}50)` }} />
-                <div className="text-2xl">💈</div>
-                <div className="h-px flex-1" style={{ background: `linear-gradient(90deg, ${B.gold}50, transparent)` }} />
+          viewport={{ once: true }} transition={{ duration: 0.6 }}
+          className="rounded-3xl overflow-hidden"
+          style={{
+            background: 'rgba(8,11,16,0.95)',
+            border: `1px solid ${B.border}`,
+            boxShadow: `0 0 60px rgba(184,134,11,0.08), 0 40px 80px rgba(0,0,0,0.5)`,
+          }}>
+          <div className="px-8 py-5"
+            style={{ background: `linear-gradient(90deg, rgba(184,134,11,0.12), rgba(184,134,11,0.04))`, borderBottom: `1px solid ${B.border}` }}>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ background: `linear-gradient(135deg, ${B.gold}, ${B.goldDark})` }}>
+                <Scissors className="w-4 h-4" style={{ color: B.bg }} />
               </div>
-              <div className="text-base font-black tracking-[0.32em] uppercase" style={{ color: B.gold }}>
-                {isRTL ? 'قائمة الأسعار' : 'Pricelist'}
-              </div>
-              <div className="text-[11px] tracking-widest mt-1" style={{ color: 'rgba(255,255,255,0.28)' }}>
-                {isRTL ? 'الأسعار تقريبية بالدينار البحريني' : 'Approximate prices in Bahraini Dinar (BD)'}
-              </div>
+              <h3 className="font-black tracking-[0.2em] text-sm uppercase" style={{ color: B.gold }}>
+                {isRTL ? 'خدماتنا وأسعارنا' : 'Our Services & Pricing'}
+              </h3>
             </div>
-            <div className="px-6 md:px-10 py-4">
-              {SERVICES.map((svc, idx) => (
-                <motion.div key={idx}
-                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }} whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }} transition={{ delay: idx * 0.04, duration: 0.35 }}
-                  className="flex items-center justify-between py-3.5 group relative"
-                  style={{ borderBottom: idx < SERVICES.length - 1 ? `1px solid rgba(184,134,11,0.08)` : 'none' }}>
-                  <div className="absolute inset-x-0 inset-y-1 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                    style={{ background: 'rgba(184,134,11,0.04)' }} />
-                  <div className="flex items-center gap-3 relative z-10">
-                    <span className="text-base">{svc.icon}</span>
-                    <span className="font-semibold text-sm md:text-base transition-colors group-hover:text-white" style={{ color: B.silver }}>
-                      {i18n.language === 'ar' ? svc.ar : svc.en}
-                    </span>
-                  </div>
-                  <div className="flex-1 mx-5 min-w-0" style={{ borderBottom: `1px dotted rgba(184,134,11,0.14)`, marginTop: '-2px' }} />
-                  <div className="flex items-baseline gap-1.5 relative z-10">
-                    <span className="font-black text-xl tabular-nums" style={{ color: B.gold, textShadow: `0 0 12px ${B.gold}50` }}>{svc.price}</span>
-                    <span className="text-[10px] font-bold tracking-wider" style={{ color: 'rgba(184,134,11,0.5)' }}>BD</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <div className="px-8 pb-6 text-center" style={{ borderTop: `1px solid rgba(184,134,11,0.08)` }}>
-              <p className="text-[11px] tracking-wide mt-4" style={{ color: 'rgba(255,255,255,0.18)' }}>
-                {isRTL ? '* الأسعار تقريبية · اتصل للتأكيد' : '* Prices approximate · Call to confirm'}
-              </p>
-            </div>
+          </div>
+
+          <div className="divide-y" style={{ borderColor: 'rgba(184,134,11,0.07)' }}>
+            {SERVICES.map((svc, idx) => (
+              <motion.div key={idx}
+                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ delay: Math.min(idx * 0.03, 0.25), duration: 0.4 }}
+                className="flex items-center px-8 py-4 group hover:bg-white/[0.025] transition-colors relative">
+                <div className="flex items-center gap-3 min-w-0 flex-shrink-0">
+                  <span className="text-lg w-8 text-center">{svc.icon}</span>
+                  <span className="font-semibold text-sm md:text-base transition-colors group-hover:text-white" style={{ color: B.silver }}>
+                    {i18n.language === 'ar' ? svc.ar : svc.en}
+                  </span>
+                </div>
+                <div className="flex-1 mx-5 min-w-0" style={{ borderBottom: `1px dotted rgba(184,134,11,0.14)`, marginTop: '-2px' }} />
+                <div className="flex items-baseline gap-1.5 relative z-10">
+                  <span className="font-black text-xl tabular-nums" style={{ color: B.gold, textShadow: `0 0 12px ${B.gold}50` }}>{svc.price}</span>
+                  <span className="text-[10px] font-bold tracking-wider" style={{ color: 'rgba(184,134,11,0.5)' }}>BD</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="px-8 pb-6 text-center" style={{ borderTop: `1px solid rgba(184,134,11,0.08)` }}>
+            <p className="text-[11px] tracking-wide mt-4" style={{ color: 'rgba(255,255,255,0.18)' }}>
+              {isRTL ? '* الأسعار تقريبية · اتصل للتأكيد' : '* Prices approximate · Call to confirm'}
+            </p>
           </div>
         </motion.div>
       </div>
@@ -389,7 +383,7 @@ function ServicesSection({ isRTL }: { isRTL: boolean }) {
 }
 
 /* ══════════════════════════════════
-   GALLERY — auto-scroll with emojis
+   GALLERY
 ══════════════════════════════════ */
 function GallerySection() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -399,7 +393,6 @@ function GallerySection() {
   const lang = i18n.language;
   const images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(n => `/gallery/${n}.jpg`);
 
-  // Smooth continuous auto-scroll — stops on hover/touch, resumes after 2s
   useEffect(() => {
     let dir = 1;
     const tick = () => {
@@ -418,12 +411,7 @@ function GallerySection() {
 
   const pause = () => { isPausedRef.current = true; };
   const resume = () => { setTimeout(() => { isPausedRef.current = false; }, 2000); };
-
-  const scroll = (dir: number) => {
-    pause();
-    scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
-    resume();
-  };
+  const scroll = (dir: number) => { pause(); scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' }); resume(); };
 
   return (
     <section id="gallery" className="py-24 relative overflow-hidden"
@@ -439,7 +427,6 @@ function GallerySection() {
             <Sparkles className="w-3 h-3" />
             {lang === 'ar' ? 'معرض الصور' : 'Photo Gallery'}
           </span>
-          {/* ✂️ Gallery 💈 — emojis on both sides */}
           <h2 className="text-3xl md:text-5xl font-black tracking-wider uppercase" style={{ color: B.white, fontFamily: '"Playfair Display", serif' }}>
             ✂️ &nbsp;{lang === 'ar' ? 'المعرض' : 'Gallery'}&nbsp; 💈
           </h2>
@@ -450,13 +437,10 @@ function GallerySection() {
       <div className="relative w-full" dir="ltr"
         onMouseEnter={pause} onMouseLeave={resume}
         onTouchStart={pause} onTouchEnd={resume}>
-
-        {/* Arrow fade edges */}
         <div className="absolute left-0 top-0 bottom-10 w-16 z-10 pointer-events-none"
           style={{ background: `linear-gradient(to right, ${B.panel}, transparent)` }} />
         <div className="absolute right-0 top-0 bottom-10 w-16 z-10 pointer-events-none"
           style={{ background: `linear-gradient(to left, ${B.surface}, transparent)` }} />
-
         <button onClick={() => scroll(-1)}
           className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-all hover:scale-110"
           style={{ background: 'rgba(6,8,14,0.95)', border: `1px solid ${B.borderGlow}`, color: B.gold, boxShadow: `0 0 20px rgba(184,134,11,0.18)` }}>
@@ -467,7 +451,6 @@ function GallerySection() {
           style={{ background: 'rgba(6,8,14,0.95)', border: `1px solid ${B.borderGlow}`, color: B.gold, boxShadow: `0 0 20px rgba(184,134,11,0.18)` }}>
           <ChevronRight className="w-5 h-5" />
         </button>
-
         <div ref={scrollRef}
           className="flex overflow-x-auto gap-5 pb-10 pt-4 px-8 lg:px-20"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
@@ -490,7 +473,6 @@ function GallerySection() {
         <p className="text-center text-xs mt-1 md:hidden tracking-widest font-bold" style={{ color: B.goldDark }}>← swipe →</p>
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {selected && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -519,11 +501,11 @@ function GallerySection() {
    REVIEWS
 ══════════════════════════════════ */
 const REVIEWS = [
-  { name: 'Ahmad Al-Mansoori', rating: 5, text: 'Best barbershop in Bahrain. The facial and haircut combo was absolutely premium. Staff is very professional.', ar: 'أفضل محل حلاقة في البحرين. تجربة الفيشل وقصة الشعر كانت ممتازة. الموظفون محترفون جداً.' },
-  { name: 'Khalid Hassan',     rating: 5, text: 'Amazing spa services. The foot massage and pedicure were top notch. Clean, modern and relaxing atmosphere.', ar: 'خدمات سبا رائعة. تدليك القدم والبديكير كانا ممتازين. جو نظيف وحديث ومريح.' },
-  { name: 'Mohammed Saleh',    rating: 5, text: 'Friendly barbers, great attention to detail. Located conveniently inside Alsayh Centre in Busaiteen.', ar: 'حلاقون ودودون، اهتمام كبير بالتفاصيل. موقع مريح داخل مركز الصايح في البسيتين.' },
-  { name: 'Faisal Al-Dosari',  rating: 4, text: 'Very good services and reasonable prices. The manicure and pedicure are excellent. Will definitely return.', ar: 'خدمات جيدة جداً وأسعار معقولة. المانيكير والبديكير ممتازان. سأعود بالتأكيد.' },
-  { name: 'Yusuf Al-Bahrani',  rating: 5, text: 'Visited for hair color and a shave. Professional job done with great care. Highly recommended!', ar: 'زرتهم لصباغة الشعر والحلاقة. عمل احترافي بعناية فائقة. أنصح بهم بشدة!' },
+  { name: 'Ahmed Al Dosari',    rating: 5, text: 'Exceptional service from start to finish. The atmosphere is luxurious, the barbers are highly skilled.', ar: 'خدمة استثنائية من البداية للنهاية. الأجواء فاخرة والحلاقون ذوو مهارة عالية.' },
+  { name: 'Mohammed Al Khalifa',rating: 5, text: 'One of the cleanest and most professional barber shops in Bahrain. The haircut was perfect.', ar: 'من أنظف وأكثر محلات الحلاقة احترافاً في البحرين. قصة الشعر كانت مثالية.' },
+  { name: 'Yousef Al Zayani',   rating: 5, text: 'Honestly the best fade I\'ve had in years. The team is respectful, fast, and very professional.', ar: 'بصدق أفضل فيد حصلت عليه منذ سنوات. الفريق محترم وسريع ومهني جداً.' },
+  { name: 'Khalid Al Mannai',   rating: 5, text: 'Luxury atmosphere and excellent customer service. The barber understood exactly what I wanted.', ar: 'أجواء فاخرة وخدمة عملاء ممتازة. فهم الحلاق بالضبط ما أريد.' },
+  { name: 'Omar Al Hayki',      rating: 5, text: 'Very classy place with experienced barbers. Clean tools, modern style, and great hospitality.', ar: 'مكان راقٍ بحلاقين ذوي خبرة. أدوات نظيفة وأسلوب حديث وضيافة رائعة.' },
 ];
 
 function ReviewsSection({ isRTL }: { isRTL: boolean }) {
@@ -537,7 +519,7 @@ function ReviewsSection({ isRTL }: { isRTL: boolean }) {
           <span className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.42em] uppercase mb-5 px-5 py-2 rounded-full"
             style={{ color: B.gold, background: 'rgba(184,134,11,0.07)', border: `1px solid ${B.border}` }}>
             <Star className="w-3 h-3 fill-current" style={{ color: B.gold }} />
-            {isRTL ? '4.7 تقييم جوجل' : '4.7 on Google'}
+            {isRTL ? '4.9 تقييم جوجل' : '4.9 on Google'}
           </span>
           <h2 className="text-3xl md:text-4xl font-black tracking-wider uppercase" style={{ color: B.white, fontFamily: '"Playfair Display", serif' }}>
             {isRTL ? 'تقييمات العملاء' : 'Customer Reviews'}
@@ -587,22 +569,22 @@ type Msg = { from: 'bot' | 'user'; text: string };
 
 const INFO = {
   en: {
-    address: '📍 Alsayh Centre, 2811 Busaiteen / Al Sayh, Bahrain\n🗺️ ' + MAPS_URL,
-    phone:   '📞 +973 3977 7136\n💬 WhatsApp: wa.me/97339777136',
+    address: `📍 Building 111 Road 77, Janabiyah, Bahrain\n🗺️ ${MAPS_URL}`,
+    phone:   `📞 ${PHONE}\n💬 WhatsApp: wa.me/97366999901`,
     hours:   '🕙 Mon–Wed & Sat–Sun: 10 AM – 10 PM\n🕙 Thu–Fri: 10 AM – 11 PM',
     prices:  '✂️ Hair Cut — 2.5 BD\n🪒 Beard Shave — 1.5 BD\n🚿 Hair Wash — 2 BD\n💨 Hair Drying — from 4 BD\n✨ Protein Treatment — from 15 BD\n💎 Opti Smooth — from 35 BD\n🎨 Hair Dye — from 8 BD\n🖌️ Highlights — from 18 BD\n💅 Classic Manicure — 3 BD\n🦶 Classic Pedicure — 4 BD\n🛁 Spa Manicure — 4 BD\n🧖 Spa Pedicure — 5 BD\n👑 Royal Manicure — 5 BD\n👑 Royal Pedicure — 6 BD\n💆 Foot Massage — 1 BD\n✨ Regular Facial — 5 BD\n🌟 Professional Facial — 8 BD',
     services:'We offer: Haircuts, Beard Shaving, Hair Treatments (Protein, Opti-Smooth, Highlights, Dye), Manicure & Pedicure (Classic / Spa / Royal), Foot Massage, Facials (Regular & Professional).',
-    book:    '📲 Book easily via WhatsApp:\n+973 3977 7136\nwa.me/97339777136\n\nWalk-ins are also welcome!',
-    welcome: 'Hi! 👋 Welcome to The Barber Shop & Spa.\nTap a button below to get the info you need instantly:',
+    book:    `📲 Book easily via WhatsApp:\n${PHONE}\nwa.me/97366999901\n\nWalk-ins are also welcome!`,
+    welcome: 'Hi! 👋 Welcome to The Social Barber.\nTap a button below to get the info you need instantly:',
   },
   ar: {
-    address: '📍 مركز الصايح، 2811 البسيتين / الصايح، البحرين\n🗺️ ' + MAPS_URL,
-    phone:   '📞 97339777136+\n💬 واتساب: wa.me/97339777136',
+    address: `📍 مبنى 111 طريق 77، الجنابية، البحرين\n🗺️ ${MAPS_URL}`,
+    phone:   `📞 ${PHONE}\n💬 واتساب: wa.me/97366999901`,
     hours:   '🕙 الإثنين–الأربعاء والسبت–الأحد: 10ص – 10م\n🕙 الخميس–الجمعة: 10ص – 11م',
     prices:  '✂️ قص الشعر — 2.5 BD\n🪒 حلاقة اللحية — 1.5 BD\n🚿 الشاور — 2 BD\n💨 ويفي — من 4 BD\n✨ بروتين — من 15 BD\n💎 أوبتي سموث — من 35 BD\n🎨 صبغة — من 8 BD\n🖌️ هايلايت — من 18 BD\n💅 منكير — 3 BD\n🦶 بدكير — 4 BD\n🛁 سبا منكير — 4 BD\n🧖 سبا بدكير — 5 BD\n👑 رويال منكير — 5 BD\n👑 رويال بدكير — 6 BD\n💆 مساج القدم — 1 BD\n✨ فيشل عادي — 5 BD\n🌟 فيشل بروفيشنال — 8 BD',
     services:'نقدم: قص الشعر، الحلاقة، علاجات الشعر (بروتين، أوبتي سموث، هايلايت، صبغة)، المانيكير والبديكير (عادي / سبا / رويال)، تدليك القدم، الفيشل.',
-    book:    '📲 احجز موعدك عبر واتساب:\n97339777136+\nwa.me/97339777136\n\nالزيارات المباشرة مرحب بها أيضاً!',
-    welcome: 'أهلاً! 👋 مرحباً بك في ذا باربر شوب آند سبا.\nاضغط على أحد الأزرار للحصول على المعلومات التي تحتاجها:',
+    book:    `📲 احجز موعدك عبر واتساب:\n${PHONE}\nwa.me/97366999901\n\nالزيارات المباشرة مرحب بها أيضاً!`,
+    welcome: 'أهلاً! 👋 مرحباً بك في ذا سوشيال باربر.\nاضغط على أحد الأزرار للحصول على المعلومات التي تحتاجها:',
   },
 };
 
@@ -639,7 +621,6 @@ function ChatInterface({ isRTL }: { isRTL: boolean }) {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages]);
 
-  // Reset welcome message when language changes
   useEffect(() => {
     setMessages([{ from: 'bot', text: INFO[lang].welcome }]);
   }, [lang]);
@@ -674,8 +655,6 @@ function ChatInterface({ isRTL }: { isRTL: boolean }) {
           </motion.div>
         ))}
       </div>
-
-      {/* Quick buttons */}
       <div className="px-3 py-3 grid grid-cols-2 gap-2" style={{ borderTop: `1px solid rgba(184,134,11,0.08)` }}>
         {btns.map((b, i) => (
           <button key={i} onClick={() => handle(b.key, b.label)}
@@ -785,20 +764,20 @@ export default function App() {
                     className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                     onError={e => {
                       const img = e.target as HTMLImageElement;
-                      img.src = '/gallery/2.jpg';
+                      img.src = '/gallery/logo.png';
                       img.onerror = () => { img.style.display = 'none'; };
                     }} />
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-sm font-black tracking-[0.1em] leading-tight" style={{ fontFamily: '"Playfair Display", serif' }}>
-                    <span style={{ color: B.gold }}>THE BARBER </span>
-                    <span style={{ color: B.white }}>SHOP & SPA</span>
+                    <span style={{ color: B.gold }}>THE SOCIAL </span>
+                    <span style={{ color: B.white }}>BARBER</span>
                   </div>
-                  <div className="text-[9px] tracking-[0.22em] uppercase font-bold" style={{ color: B.goldDark }}>Busaiteen · Bahrain</div>
+                  <div className="text-[9px] tracking-[0.22em] uppercase font-bold" style={{ color: B.goldDark }}>Janabiyah · Bahrain</div>
                 </div>
               </div>
 
-              {/* Desktop nav — dividers between items */}
+              {/* Desktop nav */}
               <div className="hidden lg:flex items-center">
                 {navLinks.map((item) => (
                   <div key={item.id} className="flex items-center">
@@ -813,8 +792,7 @@ export default function App() {
                   </div>
                 ))}
                 <div className="w-px h-5 mx-5" style={{ background: 'rgba(184,134,11,0.25)' }} />
-                {/* WhatsApp CTA */}
-                <a href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز' : 'Hello, I would like to book an appointment')}`}
+                <a href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز في ذا سوشيال باربر' : 'Hello, I would like to book an appointment at The Social Barber')}`}
                   target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-xl text-[11px] font-black tracking-[0.18em] uppercase mr-3 transition-all hover:scale-105"
                   style={{ background: `linear-gradient(135deg, ${B.gold}, ${B.goldDark})`, color: '#06080e', boxShadow: `0 0 20px rgba(184,134,11,0.3)` }}>
@@ -852,7 +830,7 @@ export default function App() {
                     <span style={{ color: B.gold, fontSize: '1.1rem' }}>›</span>
                   </button>
                 ))}
-                <a href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز' : 'Hello, I would like to book an appointment')}`}
+                <a href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز في ذا سوشيال باربر' : 'Hello, I would like to book an appointment at The Social Barber')}`}
                   target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-between px-6 py-4 text-sm font-black tracking-[0.2em] uppercase"
                   style={{ color: '#25D366', borderBottom: `1px solid rgba(184,134,11,0.08)` }}
@@ -908,14 +886,14 @@ export default function App() {
                 <div className="w-20 h-[2px] mx-auto rounded-full mt-4" style={{ background: `linear-gradient(90deg, transparent, ${B.gold}, transparent)` }} />
               </motion.div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <motion.a href="tel:+97339777136" whileHover={{ scale: 1.03 }}
+                <motion.a href={`tel:${PHONE_RAW}`} whileHover={{ scale: 1.03 }}
                   className="flex flex-col items-center gap-3 p-6 rounded-2xl text-center"
                   style={{ background: 'rgba(184,134,11,0.05)', border: `1px solid ${B.border}` }}>
                   <Phone className="w-7 h-7" style={{ color: B.gold }} />
                   <span className="text-xs font-black tracking-[0.3em] uppercase" style={{ color: B.goldDark }}>
                     {isRTL ? 'اتصل بنا' : 'Call Us'}
                   </span>
-                  <span className="font-black text-lg tracking-wide" style={{ color: B.white }} dir="ltr">+973 3977 7136</span>
+                  <span className="font-black text-lg tracking-wide" style={{ color: B.white }} dir="ltr">{PHONE}</span>
                 </motion.a>
                 <motion.a href={MAPS_URL} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.03 }}
                   className="flex flex-col items-center gap-3 p-6 rounded-2xl text-center"
@@ -924,7 +902,9 @@ export default function App() {
                   <span className="text-xs font-black tracking-[0.3em] uppercase" style={{ color: B.goldDark }}>
                     {isRTL ? 'احصل على الاتجاهات' : 'Get Directions'}
                   </span>
-                  <span className="text-sm leading-snug" style={{ color: B.silver }}>{t('Address')}</span>
+                  <span className="text-sm leading-snug" style={{ color: B.silver }}>
+                    {isRTL ? ADDRESS_AR : ADDRESS_EN}
+                  </span>
                 </motion.a>
                 <motion.div whileHover={{ scale: 1.03 }}
                   className="flex flex-col items-center gap-3 p-6 rounded-2xl text-center"
@@ -950,18 +930,18 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10">
                 <div>
                   <div className="text-xl font-black tracking-[0.1em] mb-1" style={{ fontFamily: '"Playfair Display", serif' }}>
-                    <span style={{ color: B.gold }}>THE BARBER </span>
-                    <span style={{ color: B.white }}>SHOP & SPA</span>
+                    <span style={{ color: B.gold }}>THE SOCIAL </span>
+                    <span style={{ color: B.white }}>BARBER</span>
                   </div>
                   <div className="text-[10px] tracking-[0.3em] uppercase mb-5 font-bold" style={{ color: B.goldDark }}>Men's Grooming · Bahrain</div>
                   <p className="text-zinc-500 text-sm leading-relaxed">{t('Tagline')}</p>
                   <div className="flex gap-3 mt-6">
-                    <a href="https://www.instagram.com/thebarbershop.bh" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.instagram.com/thesocialbarber.bh" target="_blank" rel="noopener noreferrer"
                       className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                       style={{ background: 'rgba(184,134,11,0.08)', border: `1px solid ${B.border}` }}>
                       <Instagram className="w-4 h-4" style={{ color: B.gold }} />
                     </a>
-                    <a href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز' : 'Hello, I would like to book an appointment')}`}
+                    <a href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز في ذا سوشيال باربر' : 'Hello, I would like to book an appointment at The Social Barber')}`}
                       target="_blank" rel="noopener noreferrer"
                       className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                       style={{ background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.3)' }}>
@@ -977,11 +957,11 @@ export default function App() {
                     <a href={MAPS_URL} target="_blank" rel="noopener noreferrer"
                       className="flex items-start gap-3 hover:text-white transition-colors">
                       <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: B.gold }} />
-                      <span className="leading-snug">{t('Address')}</span>
+                      <span className="leading-snug">{isRTL ? ADDRESS_AR : ADDRESS_EN}</span>
                     </a>
-                    <a href="tel:+97339777136" className="flex items-center gap-3 hover:text-white transition-colors">
+                    <a href={`tel:${PHONE_RAW}`} className="flex items-center gap-3 hover:text-white transition-colors">
                       <Phone className="w-4 h-4 flex-shrink-0" style={{ color: B.gold }} />
-                      <span dir="ltr" className="font-bold text-white tracking-wide">+973 3977 7136</span>
+                      <span dir="ltr" className="font-bold text-white tracking-wide">{PHONE}</span>
                     </a>
                   </div>
                 </div>
@@ -1003,7 +983,7 @@ export default function App() {
               </div>
               <div className="pt-8 text-center text-xs text-zinc-700"
                 style={{ borderTop: `1px solid rgba(184,134,11,0.06)` }}>
-                © {new Date().getFullYear()} The Barber Shop and Spa — Bahrain. All rights reserved.
+                © {new Date().getFullYear()} The Social Barber — Janabiyah, Bahrain. All rights reserved.
               </div>
             </div>
           </footer>
@@ -1044,7 +1024,6 @@ export default function App() {
                 border: `1px solid ${B.border}`,
                 boxShadow: `0 0 50px rgba(184,134,11,0.10), 0 40px 80px rgba(0,0,0,0.6)`,
               }}>
-              {/* Chat header */}
               <div className="p-4 flex justify-between items-center flex-shrink-0"
                 style={{ background: 'rgba(8,11,16,0.99)', borderBottom: `1px solid rgba(184,134,11,0.09)` }}>
                 <div className="flex items-center gap-3">
@@ -1074,7 +1053,7 @@ export default function App() {
 
         {/* ══ WHATSAPP FAB ══ */}
         <motion.a
-          href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز' : 'Hello, I would like to book an appointment')}`}
+          href={`${WALINK}?text=${encodeURIComponent(isRTL ? 'السلام عليكم، أريد الحجز في ذا سوشيال باربر' : 'Hello, I would like to book an appointment at The Social Barber')}`}
           target="_blank" rel="noopener noreferrer"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
